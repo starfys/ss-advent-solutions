@@ -31,3 +31,11 @@
             (map  #(apply min %) nums)))))
 
 (daytwo read-line)
+;(+(* 2(reduce +(flatten (map #( drop-last(sort % )) (formatfile read-line)))))
+;      (reduce +(map #(reduce * %)(formatfile read-line))))
+(defn parttwo[nums]
+  (+ (* 2(reduce +(flatten (map #( drop-last(sort %)) nums))))
+     (reduce +(map #(reduce * %) nums))))
+(parttwo (formatfile read-line))
+
+
