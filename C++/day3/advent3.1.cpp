@@ -18,32 +18,47 @@
 */
 #include <stdio.h>
 #include <stdint.h>
+#include <set>
 
 int main()
 {
     char curInstruction;
-    int x = 0;
-    int y = 0;
+    int64_t currentLocation;
+    
+    int32_t x = 0;
+    int32_t y = 0;
 
-
+    //Set storing the coordinates of all visited locations
+    std::set<int64_t> visitedLocations;
+    //Insert the value representing 0,0
+    visitedLocations.insert(0);
+    //Read in each character
     while((curInstruction = getchar()) != EOF)
     {
-        if(curInstruction == '<')
+        //Handle the instruction
+        switch(curInstruction)
         {
-            --x;
+            case '<':
+                --x;
+                break;
+            case '>':
+                ++x;
+                break;
+            case '^':
+                ++y;
+                break;
+            case 'v':
+                --y;
+                break;
         }
-        else if(curInstruction == '>')
-        {
-            ++x;
-        }
-        else if(curInstruction == '^')
-        {
-            ++y;
-        }
-        else
-        {
-            --y;
-        }
+        //Initialize the location to X
+        currentLocation = x;
+        //Shift the value 32 bits to the left
+        currentLocation <<= 32;
+        //Add y to the location
+        currentLocation += y;
+        //The resulting currentLocation is unique for each coordinate
+        visitedLocations.insert(currentLocation);
     }
-    //TODO: finish this
+    printf("%d\n",visitedLocations.size());
 }
