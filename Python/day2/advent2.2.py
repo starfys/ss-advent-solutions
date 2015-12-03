@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+"""
+Solves the second problem in the second pair of advent of code problems
+Copyright 2015 Steven Sheffey
+
+    This file is part of ss-advent-solutions
+
+    ss-advent-solutions is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    ss-advent-solutions is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with ss-advent-solutions.  If not, see <http://www.gnu.org/licenses/>.
+"""
+import sys
+print(sum(list(map(lambda coords: coords[0]*coords[1]*coords[2] + 2*(coords[0]+coords[1]), map(lambda line: sorted(list(map(int, line.rstrip().split("x")))), sys.stdin.readlines())))))
