@@ -21,4 +21,4 @@
 (recursion   (map curly(seq (slurp read-line))) 1 0)
 
 ;(reduce +(range 1 100))
-(;take-while #(> (gz %) 0)  (map curly(seq (slurp read-line))))
+;(take-while #(> (gz %) 0)  (map curly(seq (slurp read-line))))
