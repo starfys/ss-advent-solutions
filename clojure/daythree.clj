@@ -4,8 +4,7 @@
     (= command \^)[ (first pos )  (+ 1 (second pos))]
      (= command \< ) [ (- (first pos ) 1) (second pos)]
      :else ;v
-       [ (first pos )  (-  (second pos) 1)]
-   ))
+       [ (first pos )  (-  (second pos) 1)]))
 
 
 (newspot (first (seq(slurp read-line))) [0 0])
@@ -48,4 +47,4 @@
                    (recursion (map first (partition 1 2 (seq(slurp filename)))) [])
                     (recursion (map first (partition 1 2 (next(seq(slurp filename)))))[])))))
 
-(daythreetwo read-line )
+(daythreetwo read-line)
