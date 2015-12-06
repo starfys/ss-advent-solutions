@@ -1,5 +1,5 @@
 (use '[clojure.string :only (join split)])
-(split (slurp read-line) #"\n")
+;(split (slurp read-line) #"\n")
 
 ;(myget freq \a)(myget freq \e)(myget freq \i)(myget freq \o)(myget freq \u)
 
@@ -35,7 +35,7 @@
           ))
     )
 
-  (split (slurp read-line) #"\n")
+;(split (slurp read-line) #"\n")
 (frequencies(map #(nicestr %)  (split (slurp read-line) #"\n")))
 ;(nicestr (first(split (slurp read-line) #"\n")))
 ;(nicestr (second(split (slurp read-line) #"\n")))
@@ -50,8 +50,6 @@
 ;(first (evenodd (second(split (slurp read-line) #"\n"))))
 
 
-
-
 (mastermind "ugknbfddgicrmopn" )
 (mastermind "onbbhxrnmohzskgg")
 (evenodd "abcddefghi")
@@ -59,3 +57,13 @@
 (nicestr "ugknbfddgicrmopn")
 (nicestr "dvszwmarrgswjxmb")
 
+(defn dayfivetwo[string]
+  (and(not(nil? (re-find #"(..).*\1" string )))
+      (not(nil? (re-find #"(.).\1"  string )))))
+
+
+(dayfivetwo "qjhvhtzxzqqjkmpb")
+(frequencies(map #(dayfivetwo %) (split (slurp "/users/stephenkinser/dayfive.txt") #"\n")))
+
+(and(not(nil?(re-find #"(.).\1" "qjhvhtzxzqqjkmpb")))
+(not(nil?(re-find #"(..).*\1" "qjhvhtzxzqqjkmpb"))))
