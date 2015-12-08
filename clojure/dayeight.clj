@@ -35,7 +35,7 @@
 (defn weirdparse[string]
             (+ 2 (count (re-seq #"\\\\" string))
                  (count (re-seq #"\\\"" string) )
-                (* 3(count (re-seq #"\\x[a-f0-9]{2}" string)))))
+                  (* 3(count (re-seq #"\\x[a-f0-9]{2}" string)))))
 
 ;more prototyping
 ;(weirdparse (second(split (slurp "/Users/stephenkinser/dayeight.txt") #"\n")))
@@ -69,3 +69,22 @@
   (reduce +(map #(count (badreplace %)) data) )))
 ;(dataset (split (slurp "/Users/stephenkinser/sample.txt") #"\n"))
 (dataset (split (slurp "/Users/stephenkinser/dayeight.txt") #"\n"))
+
+(defn horriblereplace [string]
+    (clojure.string/replace
+     (clojure.string/replace string #"\\" "__")
+                                     #"\"" "__"))
+;(count(clojure.string/replace (first(split (slurp "/Users/stephenkinser/sample.txt") #"\n")) #"\"" "\\\\\""))
+;(count(clojure.string/replace (second(split (slurp "/Users/stephenkinser/sample.txt") #"\n")) #"\"" "\\\\\""))
+
+;(map #(horriblereplace %) (split (slurp "/Users/stephenkinser/sample.txt") #"\n"))
+;(map #(+ 2 (count(horriblereplace %))) (split (slurp "/Users/stephenkinser/sample.txt") #"\n"))
+
+(defn parttwo [data]
+(-
+  (reduce +(map #( +  2 (count (horriblereplace %))) data))
+   (reduce +(map #(  count  %) data))))
+;regex isn't doing what I want
+(parttwo (split (slurp "/Users/stephenkinser/dayeight.txt") #"\n"))
+;(parttwo (split (slurp "/Users/stephenkinser/sample.txt") #"\n"))
+
