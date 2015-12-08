@@ -31,7 +31,9 @@ robo_y=0
 visitedHouses=set()
 visitedHouses.add((0,0))
 
-for a in range(data,2)
+curTurn = 0
+
+for instruction in data:
     if curTurn % 2 == 0:
         if instruction == '>':
             x+=1
@@ -52,4 +54,5 @@ for a in range(data,2)
         if instruction == 'v':
             robo_y-=1
         visitedHouses.add((robo_x,robo_y))
-print(numVisited)
+    curTurn += 1
+print(len(visitedHouses))
