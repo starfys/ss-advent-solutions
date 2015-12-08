@@ -21,9 +21,16 @@ Copyright 2015 Steven Sheffey
 
 import sys
 
-data=sys.stdin.readlines()
+#Initialize count to zero
 diff = 0
-for line in data:
+
+#Iterate over every line
+for line in sys.stdin.readlines():
+    #Remove trailing newlines
     line = line.rstrip()
+    #Compare the length of the original string with
+    #The length of the string with escape sequences evaluated
+    #TODO: THIS IS UNSAFE
+    #USE REGEX OR ENCODING INSTEAD
     diff += len(line) - len(eval(line))
 print(diff)

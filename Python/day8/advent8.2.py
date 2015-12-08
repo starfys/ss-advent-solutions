@@ -20,8 +20,15 @@ Copyright 2015 Steven Sheffey
 """
 
 import sys
-data=sys.stdin.readlines()
+
+#Initialize count to zero
 diff = 0
-for line in data:
+
+for line in sys.stdin.readlines():
+    #Remove trailing newlines
+    line = line.rstrip()
+    #2               : 2 quotation marks added
+    #line.count('\\'): 1 extra backslash added per backslash
+    #line.count('\"'): 1 extra backslask added per quotation mark
     diff += 2 + line.count('\\') + line.count('\"')
 print(diff)
