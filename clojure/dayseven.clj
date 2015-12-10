@@ -7,15 +7,13 @@
   [s]
   (if (re-find #"^-?\d+\.?\d*$" s)
     (read-string s)))
-(defn parseorlookup[dataset key1]
-  (if (nil? (parse-number key1))
-                      (retrival dataset key1)
-                      (parse-number key1)))
+
 
 (defn makemap [filename]
   (into {}(map #(hash-map (keyword(last (split % #"-> ")))(first (split % #"-> ")))
      (split (slurp filename ) #"\n"))))
 (def dataset (makemap "/users/stephenkinser/dayseven.txt"))
+
 (get (makemap "/users/stephenkinser/dayseven.txt") :ir)
 (count(split (get (makemap "/users/stephenkinser/dayseven.txt") :a) #" "))
 (defn retrival ([dataset key1]
@@ -43,9 +41,17 @@
        (= rule "RSHIFT") (bit-shift-right left right)
        (= rule "LSHIFT") (bit-shift-left left right)
      ))))
+
+(defn parseorlookup[dataset key1]
+  (if (nil? (parse-number key1))
+                      (retrival dataset key1)
+                      (parse-number key1)))
+
+
+
 ;(nil?(re-seq #"[0-9]+"  (retrival (makemap "/users/stephenkinser/dayseven.txt") :a)))
-(retrival (makemap "/users/stephenkinser/dayseven.txt") "c")
-(retrival (makemap "/users/stephenkinser/dayseven.txt") "cy")
+;(retrival (makemap "/users/stephenkinser/dayseven.txt") "c")
+;(retrival (makemap "/users/stephenkinser/dayseven.txt") "cy")
 (retrival (makemap "/users/stephenkinser/dayseven.txt") "a")
 ;(bit-not(cl-format nil "2r~16,'0',B" 12))
 (- 65535 123)
