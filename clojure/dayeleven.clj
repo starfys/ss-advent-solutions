@@ -62,15 +62,17 @@
 (join #"" (map #(char %)(into [](map #(int %)(seq "hijklmzz")))))
 (join #"" (map #(char %)(base26inc(into [](map #(int %)(seq "hijklmzz"))))))
 (defn skiptonext[pass]
-  (>= (count(longest-initial-sequence pass)) 3)
+
+
   )
+
 
 (defn dayeleven[ pass ]
   (loop [ currpass (into [](map #(int %)(seq pass)))]
     (if (every? true?
                 (let [asciipass (join #"" (map #(char %) currpass))]
                 [(every? true? (map #(nil? (get (frequencies asciipass) %)) [\i \o \l]))
-                 (>= (count(longest-initial-sequence currpas)) 3)
+                 (>= (count(longest-initial-sequence currpass)) 3)
                  (>= (count(re-seq #"(.)\1+" asciipass)) 2)]))
       (join #"" (map #(char %) currpass))
       ;else, note that there are optimizations, I will skip, for example if it fails during increase, skip 26^index fail
