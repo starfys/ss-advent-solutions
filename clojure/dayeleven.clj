@@ -1,7 +1,7 @@
 (use '[clojure.string :only (join split)])
 ;(next(split "cqjxjnds" #""))
 
-(get (frequencies "hijklmmn") \i)
+;(get (frequencies "hijklmmn") \i)
 
 ;these do not work as expected
 ;(map #(get %2 %1) [\i \o \l](frequencies "cqjxjnds"))
